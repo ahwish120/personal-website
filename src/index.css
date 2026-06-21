@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-cyan: #00d4ff;
+  --color-neon-purple: #7b2ff7;
+  --color-neon-pink: #ff2d95;
+  --color-neon-green: #00ff88;
+  --color-dark-bg: #0a0a1a;
+  --color-dark-card: rgba(15, 15, 35, 0.6);
+  --color-dark-border: rgba(255, 255, 255, 0.08);
+  --color-text-primary: #e8e8f0;
+  --color-text-secondary: #9090a8;
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #0a0a1a 0%, #0d0d25 30%, #1a1a2e 70%, #0a0a1a 100%);
+  color: #e8e8f0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Glass morphism utility */
+.glass {
+  background: rgba(15, 15, 35, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-hover {
+  transition: all 0.3s ease;
+}
+.glass-hover:hover {
+  border-color: rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.1), 0 0 40px rgba(123, 47, 247, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Neon glow text */
+.neon-text {
+  background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.neon-text-pink {
+  background: linear-gradient(135deg, #ff2d95, #ff6b6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a1a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d4ff, #7b2ff7);
+  border-radius: 3px;
+}
