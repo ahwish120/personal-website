@@ -21,7 +21,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <Terminal className="w-6 h-6 text-[#00d4ff] group-hover:text-[#7b2ff7] transition-colors duration-300" />
-            <span className="text-lg font-bold neon-text">Alex.Chen</span>
+            <span className="text-lg font-bold neon-text">xiaoLiu</span>
           </Link>
 
           {/* Desktop Nav */}

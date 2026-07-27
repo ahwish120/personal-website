@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/alexchen"
+              href="https://github.com/ahwish120"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full text-gray-400 hover:text-[#00d4ff] hover:bg-white/5 transition-all duration-300"
@@ -17,7 +17,7 @@ export default function Footer() {
               <FolderGit className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com/in/alexchen"
+              href="https://github.com/ahwish120"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full text-gray-400 hover:text-[#00d4ff] hover:bg-white/5 transition-all duration-300"
@@ -26,7 +26,7 @@ export default function Footer() {
               <BriefcaseBusiness className="w-5 h-5" />
             </a>
             <a
-              href="mailto:alex.chen@example.com"
+              href="mailto:1461507618@qq.com"
               className="p-2 rounded-full text-gray-400 hover:text-[#00d4ff] hover:bg-white/5 transition-all duration-300"
               aria-label="Email"
             >
@@ -36,7 +36,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-sm text-gray-500 flex items-center gap-1">
-            Built with <Heart className="w-3 h-3 text-[#ff2d95] fill-[#ff2d95]" /> by Alex Chen
+            Built with <Heart className="w-3 h-3 text-[#ff2d95] fill-[#ff2d95]" /> by xiaoLiu
             &copy; {new Date().getFullYear()}
           </p>
         </div>

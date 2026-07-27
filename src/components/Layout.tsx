@@ -2,12 +2,12 @@ import { Outlet } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import ParticleBackground from './ParticleBackground';
+import VideoBackground from './VideoBackground';
 
 export default function Layout() {
   return (
     <div className="relative min-h-screen">
-      <ParticleBackground />
+      <VideoBackground />
       <Navbar />
       <motion.main
         initial={{ opacity: 0, y: 20 }}

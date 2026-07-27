@@ -7,17 +7,19 @@ import SkillBar from '../components/SkillBar';
 
 function groupSkillsByCategory(skills: typeof import('../data/resume').skills) {
   const groups: Record<string, typeof skills> = {
-    frontend: [],
-    backend: [],
+    hardware: [],
+    web: [],
+    circuit: [],
     tools: [],
   };
   skills.forEach((s) => {
     groups[s.category]?.push(s);
   });
   return {
-    '前端技术': groups.frontend,
-    '后端技术': groups.backend,
-    '工具与其他': groups.tools,
+    '硬件开发': groups.hardware,
+    'Web 开发': groups.web,
+    '电路设计': groups.circuit,
+    '工具与仪器': groups.tools,
   };
 }
 
@@ -59,8 +61,12 @@ export default function Resume() {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="glass rounded-2xl p-6 mb-16 flex flex-col sm:flex-row items-start gap-6"
       >
-        <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-[#00d4ff]/20 to-[#7b2ff7]/20 border border-white/5 flex items-center justify-center text-3xl flex-shrink-0">
-          👨‍💻
+        <div className="w-20 h-20 rounded-xl border border-[#7b2ff7]/15 flex items-center justify-center text-3xl flex-shrink-0 overflow-hidden">
+          <img
+            src="/personal-website/avatar.jpg"
+            alt="xiaoLiu的头像"
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="flex-1">
           <h2 className="text-2xl font-bold text-white mb-1">{personalInfo.name}</h2>
@@ -114,7 +120,7 @@ export default function Resume() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {Object.entries(skillGroups).map(([groupName, groupSkills]) => (
             <motion.div key={groupName} variants={itemVariants} className="glass rounded-2xl p-6">

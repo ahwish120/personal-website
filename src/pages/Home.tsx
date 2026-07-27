@@ -54,14 +54,16 @@ export default function Home() {
         animate="visible"
         className="min-h-[80vh] flex flex-col justify-center items-center text-center py-20"
       >
-        {/* Avatar placeholder */}
+        {/* Avatar */}
         <motion.div
           variants={itemVariants}
-          className="w-32 h-32 rounded-full mb-8 overflow-hidden border-2 border-[#00d4ff]/30 shadow-[0_0_40px_rgba(0,212,255,0.15)]"
+          className="w-32 h-32 rounded-2xl mb-8 overflow-hidden border border-[#00d4ff]/20 shadow-[0_0_48px_rgba(0,212,255,0.1)]"
         >
-          <div className="w-full h-full bg-gradient-to-br from-[#00d4ff]/20 via-[#7b2ff7]/20 to-[#ff2d95]/20 flex items-center justify-center text-5xl">
-            👨‍💻
-          </div>
+          <img
+            src="/personal-website/avatar.jpg"
+            alt="xiaoLiu的头像"
+            className="w-full h-full object-cover"
+          />
         </motion.div>
 
         {/* Greeting */}

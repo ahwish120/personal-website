@@ -17,14 +17,22 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="glass glass-hover rounded-2xl p-6 flex flex-col group relative"
     >
-      {/* Image placeholder */}
-      <div className="w-full h-48 rounded-xl mb-5 overflow-hidden bg-gradient-to-br from-[#0a0a1a] to-[#1a1a3e] border border-white/5 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-4xl mb-2 opacity-30">
-            {project.category === 'frontend' ? '🎨' : project.category === 'backend' ? '⚙️' : '🚀'}
+      {/* Image */}
+      <div className="w-full h-48 rounded-xl mb-5 overflow-hidden bg-gradient-to-br from-[#0a0a12] to-[#12122a] border border-white/[0.04] flex items-center justify-center">
+        {project.image ? (
+          <img
+            src={`/personal-website/${project.image}`}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="text-center">
+            <div className="text-4xl mb-2 opacity-30">
+              {project.category === 'frontend' ? '🎨' : project.category === 'backend' ? '⚙️' : '🚀'}
+            </div>
+            <span className="text-xs text-gray-600 font-mono">{project.title}</span>
           </div>
-          <span className="text-xs text-gray-600 font-mono">{project.title}</span>
-        </div>
+        )}
       </div>
 
       {/* Content */}
@@ -52,6 +60,17 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 rel="noopener noreferrer"
                 className="p-1.5 rounded-lg text-gray-400 hover:text-[#00d4ff] hover:bg-white/10 transition-all"
                 aria-label="Live demo"
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
+            {project.playUrl && !project.liveUrl && (
+              <a
+                href={project.playUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 rounded-lg text-gray-400 hover:text-[#00d4ff] hover:bg-white/10 transition-all"
+                aria-label="Play demo"
               >
                 <ExternalLink className="w-4 h-4" />
               </a>
