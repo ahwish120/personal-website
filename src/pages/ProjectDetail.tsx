@@ -87,6 +87,40 @@ export default function ProjectDetail() {
         </div>
       </motion.div>
 
+      {/* Image gallery */}
+      {project.images && project.images.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="mb-6"
+        >
+          <h2 className="text-xl font-semibold text-white mb-4">项目展示</h2>
+          <div className="grid grid-cols-1 gap-6">
+            <div className="glass rounded-2xl overflow-hidden border border-white/[0.04]">
+              <img
+                src={`/personal-website/${project.image}`}
+                alt={project.title}
+                className="w-full h-auto"
+              />
+            </div>
+            {project.images.slice(1).length > 0 && (
+              <div className={`grid gap-6 ${project.images.length > 2 ? 'md:grid-cols-2' : ''}`}>
+                {project.images.slice(1).map((img) => (
+                  <div key={img} className="glass rounded-2xl overflow-hidden border border-white/[0.04]">
+                    <img
+                      src={`/personal-website/${img}`}
+                      alt={`${project.title} 图片`}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </motion.div>
+      )}
+
       {/* Demo / placeholder */}
       {project.playUrl ? (
         <motion.div

@@ -4,7 +4,8 @@ export interface Project {
   description: string;
   longDescription: string;
   image: string;
-  category: 'frontend' | 'backend' | 'fullstack';
+  images?: string[];
+  category: 'frontend' | 'backend' | 'fullstack' | 'hardware';
   tech: string[];
   githubUrl?: string;
   liveUrl?: string;
@@ -13,6 +14,17 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: 'led-display',
+    title: '十字旋转 LED 悬浮显示系统 💡',
+    description: '基于视觉暂留（POV）原理的三维悬浮显示装置，STC8H1K28 主控，无线供电 + 红外同步，悬浮显示清晰稳定。',
+    longDescription: '基于视觉暂留（POV）原理，采用 STC8H1K28 单片机为主控，设计实现具备无线供电、红外同步功能的三维悬浮显示装置。负责系统方案设计、硬件电路搭建与核心代码开发，完成整机联调与测试。解决了旋转画面偏移问题，实现稳定清晰的悬浮显示效果。',
+    image: 'led-display-1.png',
+    images: ['led-display-1.png', 'led-display-2.png'],
+    category: 'hardware',
+    tech: ['STC8H1K28', 'Proteus', 'C语言', '无线供电', '红外同步'],
+    featured: true,
+  },
   {
     id: 'catapult-game',
     title: '投石问喜 🎯',
@@ -44,6 +56,7 @@ export const categories = [
   { key: 'frontend', label: '前端' },
   { key: 'backend', label: '后端' },
   { key: 'fullstack', label: '全栈' },
+  { key: 'hardware', label: '硬件' },
 ] as const;
 
 export type CategoryKey = (typeof categories)[number]['key'];
