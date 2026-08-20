@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { FolderGit, ExternalLink } from 'lucide-react';
 import type { Project } from '../data/portfolio';
 
@@ -8,6 +9,8 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
+  const navigate = useNavigate();
+
   return (
     <motion.div
       layout
@@ -15,7 +18,16 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass glass-hover rounded-2xl p-6 flex flex-col group relative"
+      onClick={() => navigate(`/portfolio/${project.id}`)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          navigate(`/portfolio/${project.id}`);
+        }
+      }}
+      className="glass glass-hover rounded-2xl p-6 flex flex-col group relative cursor-pointer hover:border-[#00d4ff]/30 transition-colors"
     >
       {/* Image */}
       <div className="w-full h-48 rounded-xl mb-5 overflow-hidden bg-gradient-to-br from-[#0a0a12] to-[#12122a] border border-white/[0.04] flex items-center justify-center">
@@ -49,6 +61,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 rel="noopener noreferrer"
                 className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all"
                 aria-label="GitHub"
+                onClick={(e) => e.stopPropagation()}
               >
                 <FolderGit className="w-4 h-4" />
               </a>
@@ -60,6 +73,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 rel="noopener noreferrer"
                 className="p-1.5 rounded-lg text-gray-400 hover:text-[#00d4ff] hover:bg-white/10 transition-all"
                 aria-label="Live demo"
+                onClick={(e) => e.stopPropagation()}
               >
                 <ExternalLink className="w-4 h-4" />
               </a>
@@ -71,6 +85,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 rel="noopener noreferrer"
                 className="p-1.5 rounded-lg text-gray-400 hover:text-[#00d4ff] hover:bg-white/10 transition-all"
                 aria-label="Play demo"
+                onClick={(e) => e.stopPropagation()}
               >
                 <ExternalLink className="w-4 h-4" />
               </a>

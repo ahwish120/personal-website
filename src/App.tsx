@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Resume from './pages/Resume';
 import Portfolio from './pages/Portfolio';
+import ProjectDetail from './pages/ProjectDetail';
 import Hobbies from './pages/Hobbies';
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="resume" element={<Resume />} />
           <Route path="portfolio" element={<Portfolio />} />
+          <Route path="portfolio/:id" element={<ProjectDetail />} />
           <Route path="hobbies" element={<Hobbies />} />
         </Route>
       </Routes>
