@@ -1,81 +1,123 @@
 @import "tailwindcss";
 
-@theme {
-  --color-neon-cyan: #00d4ff;
-  --color-neon-purple: #7b2ff7;
-  --color-neon-pink: #ff2d95;
-  --color-neon-green: #00ff88;
-  --color-dark-bg: #0a0a1a;
-  --color-dark-card: rgba(15, 15, 35, 0.6);
-  --color-dark-border: rgba(255, 255, 255, 0.08);
-  --color-text-primary: #e8e8f0;
-  --color-text-secondary: #9090a8;
-}
-
-/* Base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(135deg, #0a0a1a 0%, #0d0d25 30%, #1a1a2e 70%, #0a0a1a 100%);
-  color: #e8e8f0;
+  color: #ededf5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0a0a12;
   min-height: 100vh;
+  font-family: Outfit, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 
-#root {
-  min-height: 100vh;
-  position: relative;
+body::before {
+  content: '';
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(50% 40% at 50% 35%, #ff9a561f 0%, #0000 70%),
+    radial-gradient(60% 50% at 50% 30%, #ff6b8a14 0%, #0000 65%),
+    radial-gradient(80% 70% at 50% 40%, #a855f70f 0%, #0000 70%),
+    radial-gradient(100% 100%, #00d4ff0a 0%, #0000 80%),
+    radial-gradient(120% 100%, #0a0a1e 0%, #0000 100%);
+  position: fixed;
+  inset: 0;
 }
 
-/* Glass morphism utility */
+/* Glass morphism */
 .glass {
-  background: rgba(15, 15, 35, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(20px);
+  background: #10102073;
+  border: 1px solid #ffffff0d;
+  box-shadow: 0 4px 24px #0000004d, inset 0 1px #ffffff05;
 }
 
 .glass-hover {
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .glass-hover:hover {
-  border-color: rgba(0, 212, 255, 0.3);
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.1), 0 0 40px rgba(123, 47, 247, 0.05);
+  border-color: #00d4ff33;
   transform: translateY(-2px);
+  box-shadow: 0 4px 32px #00d4ff0f, 0 8px 64px #a855f70a, inset 0 1px #ffffff0a;
 }
 
-/* Neon glow text */
+.glass-hover:active {
+  transition: all 0.1s;
+  transform: scale(0.985) translateY(0);
+}
+
+/* Neon gradient text */
 .neon-text {
-  background: linear-gradient(135deg, #00d4ff, #7b2ff7);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #00d4ff, #a855f7);
+  -webkit-background-clip: text;
   background-clip: text;
 }
 
-.neon-text-pink {
-  background: linear-gradient(135deg, #ff2d95, #ff6b6b);
-  -webkit-background-clip: text;
+.neon-text-cyan {
   -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #00d4ff, #7dd8ff);
+  -webkit-background-clip: text;
   background-clip: text;
+}
+
+.neon-text-coral {
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #ff6b8a, #ff9a56);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.neon-text-purple {
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #a855f7, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Accent glows */
+.accent-glow-cyan {
+  box-shadow: 0 0 24px #00d4ff1f;
+}
+
+.accent-glow-purple {
+  box-shadow: 0 0 24px #a855f71f;
+}
+
+.accent-glow-coral {
+  box-shadow: 0 0 24px #ff6b8a1f;
+}
+
+/* Focus ring */
+.focus-ring:focus-visible {
+  outline-offset: 2px;
+  outline: 2px solid #00d4ff;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #0a0a1a;
+  background: #0a0a12;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00d4ff, #7b2ff7);
+  background: linear-gradient(#00d4ff, #a855f7);
   border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00d4ff;
+}
+
+::selection {
+  color: #fff;
+  background: #00d4ff33;
 }

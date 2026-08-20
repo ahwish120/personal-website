@@ -17,7 +17,7 @@ export const projects: Project[] = [
     id: 'catapult-game',
     title: '投石问喜 🎯',
     description: '基于 Matter.js 物理引擎的弹弓投石类休闲游戏，拖拽瞄准、弹道模拟、碰撞检测。',
-    longDescription: '使用 HTML5 Canvas 与 Matter.js 物理引擎构建的一款弹弓投石类休闲游戏。实现拖拽瞄准、弹道模拟、碰撞检测等功能，操作流畅自然。支持鼠标与触屏双端交互，适配 PC 和移动设备。',
+    longDescription: '使用 HTML5 Canvas 与 Matter.js 物理引擎构建的一款弹弓投石类休闲游戏。实现拖拽瞄准、弹道模拟、碰撞检测等核心玩法，操作流畅自然。支持鼠标与触屏双端交互，适配 PC 和移动设备。',
     image: 'catapult-game.png',
     category: 'frontend',
     tech: ['HTML5 Canvas', 'Matter.js', 'JavaScript'],

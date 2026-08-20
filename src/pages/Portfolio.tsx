@@ -20,10 +20,10 @@ export default function Portfolio() {
         transition={{ duration: 0.5 }}
         className="text-center py-12"
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
           <span className="neon-text">作品集</span>
         </h1>
-        <p className="text-gray-500 text-lg">我参与和独立完成的项目</p>
+        <p className="text-[#8E8EA0] text-lg">我参与和独立完成的项目</p>
       </motion.div>
 
       {/* Filter Tabs */}
@@ -38,16 +38,14 @@ export default function Portfolio() {
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={`relative px-5 py-2.5 text-sm font-medium rounded-xl transition-all duration-300 ${
-                activeCategory === cat.key
-                  ? 'text-white'
-                  : 'text-gray-400 hover:text-white'
+              className={`relative px-5 py-2.5 text-sm font-medium rounded-xl transition-all duration-300 focus-ring ${
+                activeCategory === cat.key ? 'text-white' : 'text-[#8E8EA0] hover:text-white'
               }`}
             >
               {activeCategory === cat.key && (
                 <motion.div
                   layoutId="category-bg"
-                  className="absolute inset-0 bg-gradient-to-r from-[#00d4ff]/20 to-[#7b2ff7]/20 border border-[#00d4ff]/20 rounded-xl"
+                  className="absolute inset-0 bg-gradient-to-r from-[#00D4FF]/12 to-[#A855F7]/12 border border-[#00D4FF]/15 rounded-xl"
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                 />
               )}
@@ -58,10 +56,12 @@ export default function Portfolio() {
       </motion.div>
 
       {/* Projects Grid */}
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-16">
+      <motion.div layout className="flex flex-wrap justify-center gap-6 pb-16">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
+            <div key={project.id} className="w-full md:w-[340px]">
+              <ProjectCard project={project} index={i} />
+            </div>
           ))}
         </AnimatePresence>
       </motion.div>
@@ -73,7 +73,7 @@ export default function Portfolio() {
           animate={{ opacity: 1 }}
           className="text-center py-16"
         >
-          <p className="text-gray-500 text-lg">该分类下暂无项目</p>
+          <p className="text-[#8E8EA0] text-lg">该分类下暂无项目，看看其他分类吧</p>
         </motion.div>
       )}
     </div>

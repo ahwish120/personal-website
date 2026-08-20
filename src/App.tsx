@@ -3,7 +3,9 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Resume from './pages/Resume';
 import Portfolio from './pages/Portfolio';
+import ProjectDetail from './pages/ProjectDetail';
 import Hobbies from './pages/Hobbies';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -13,7 +15,9 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="resume" element={<Resume />} />
           <Route path="portfolio" element={<Portfolio />} />
+          <Route path="portfolio/:id" element={<ProjectDetail />} />
           <Route path="hobbies" element={<Hobbies />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </HashRouter>

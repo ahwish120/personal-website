@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Terminal, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
@@ -10,92 +10,85 @@ const navLinks = [
   { path: '/hobbies', label: '爱好', num: '03' },
 ];
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+function NavContent({ onClick }: { onClick?: () => void }) {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <Terminal className="w-6 h-6 text-[#00d4ff] group-hover:text-[#7b2ff7] transition-colors duration-300" />
-            <span className="text-lg font-bold neon-text">xiaoLiu</span>
-          </Link>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg ${
-                  location.pathname === link.path
-                    ? 'text-[#00d4ff]'
-                    : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                <span className="text-[#7b2ff7] text-xs mr-1">{link.num}.</span>
-                {link.label}
-                {location.pathname === link.path && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className="absolute inset-0 bg-white/5 rounded-lg border border-white/10"
-                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
-            aria-label="Toggle menu"
+    <>
+      <Link to="/" onClick={onClick} className="flex flex-col items-center gap-1 group mb-12">
+        <Terminal className="w-6 h-6 text-[#00D4FF] group-hover:text-[#A855F7] transition-colors duration-300" />
+        <span className="text-[10px] font-bold neon-text whitespace-nowrap">xiaoLiu</span>
+      </Link>
+      <div className="flex flex-col items-center gap-2 flex-1">
+        {navLinks.map((link) => (
+          <Link
+            key={link.path}
+            to={link.path}
+            onClick={onClick}
+            className={`relative w-14 h-14 flex flex-col items-center justify-center rounded-xl text-xs font-medium transition-colors duration-300 group ${
+              location.pathname === link.path ? 'text-[#00D4FF]' : 'text-[#8E8EA0] hover:text-white'
+            }`}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+            {location.pathname === link.path && (
+              <motion.div
+                layoutId="nav-indicator"
+                className="absolute inset-0 bg-[#00D4FF]/8 rounded-xl border border-[#00D4FF]/15"
+                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            <span className="relative z-10 text-[10px] text-[#00D4FF]/70 font-medium">{link.num}</span>
+            <span className="relative z-10">{link.label}</span>
+          </Link>
+        ))}
+      </div>
+      <div className="h-4" />
+    </>
+  );
+}
+
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
+
+  return (
+    <>
+      {/* Desktop vertical nav */}
+      <div className="fixed top-0 right-0 bottom-0 z-50 glass border-l border-white/[0.04] flex flex-col items-center py-6 w-20 hidden md:flex">
+        <NavContent />
       </div>
 
-      {/* Mobile Nav */}
+      {/* Mobile menu button */}
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="fixed top-4 right-4 z-[60] md:hidden p-2.5 glass rounded-xl text-[#8E8EA0] hover:text-white transition-colors focus-ring"
+        aria-label="Toggle menu"
+      >
+        {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
+
+      {/* Mobile drawer */}
       <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden glass"
-          >
-            <div className="px-4 py-4 space-y-1">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.path}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <Link
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                      location.pathname === link.path
-                        ? 'text-[#00d4ff] bg-white/5'
-                        : 'text-gray-400 hover:text-white hover:bg-white/5'
-                    }`}
-                  >
-                    <span className="text-[#7b2ff7] text-xs mr-2">{link.num}.</span>
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+        {open && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/60 z-40 md:hidden"
+              onClick={close}
+            />
+            <motion.nav
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="fixed top-0 right-0 bottom-0 z-50 glass border-l border-white/[0.04] flex flex-col items-center py-6 w-20 md:hidden"
+            >
+              <NavContent onClick={close} />
+            </motion.nav>
+          </>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }
